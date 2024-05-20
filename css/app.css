@@ -1,0 +1,179 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Quicksand", sans-serif;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+header.navbar-container {
+  width: 100%;
+  max-width: 1200px;
+  padding-block: 1rem;
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 9999;
+}
+header.navbar-container .logo img {
+  width: 150px;
+}
+/* Pada kode CSS di atas, kita telah menerapkan flexbox pada navbar container sehingga logo dan tautan navigasi dapat tersusun secara fleksibel menggunakan properti justify-content: space-around. Properti dengan value ini akan membuat logo dan nav link berada di tepi container pada main axis. Selain itu, kita juga menerapkan z-index agar navbar selalu berada pada lapisan/tumpukan teratas sehingga user senantiasa dapat meraihnya. */
+
+header.navbar-container .nav-list ul {
+  padding-left: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem 1rem;
+}
+header.navbar-container .nav-list li {
+  list-style-type: none;
+}
+header.navbar-container .nav-list li a {
+  padding: 0.5rem 1.5rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: black;
+  transition: all 0.2s ease-in-out;
+}
+header.navbar-container .nav-list li:hover a {
+  background-color: #425c77;
+  color: white;
+}
+/* Pada kumpulan tautan navigasi, kita membuat elemen <ul> menjadi flex container. Elemen ini berada dalam elemen <nav class="nav-list">. Tentunya, seluruh elemen <li> akan menjadi flex items. */
+
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 2rem 4rem;
+  display: flex;
+  align-items: center;
+}
+/* }Di sini kita menerapkan flexbox pada elemen <main> agar konten utama bertempat di tengah secara vertikal menggunakan align-items. */
+
+main .content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+main .content .content-description {
+  flex: 1 1;
+}
+main .content .content-description .title {
+  margin-block: 1rem;
+  font-size: 3.5rem;
+}
+main .content .content-description p {
+  font-size: 1.2rem;
+  line-height: 1.7rem;
+}
+main .content .content-description button {
+  padding: 0.8rem 2.5rem;
+  border: 3px solid transparent;
+  border-radius: 999px;
+  margin-block-start: 1rem;
+  background-color: #2d3e50;
+  font-family: "Quicksand", sans-serif;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  transition: all 0.15s ease-in;
+}
+main .content .content-description button:hover {
+  border: 3px solid #2d3e50;
+  background-color: transparent;
+  color: #2d3e50;
+}
+main .content .content-image {
+  flex: 1;
+  display: flex;
+}
+main .content .content-image img {
+  width: 300px;
+  min-width: 250px;
+  margin: auto;
+}
+/* }Secara default, seluruh flex items akan dijajarkan ketika flexbox didefinisikan. Di sini, kita tidak perlu memberikan properti flex-direction karena default value-nya adalah row (horizontal). Selain itu, kita juga menerapkan properti flex-grow: 1 pada masing-masing flex item. Akan tetapi, untuk menerapkan properti tersebut, kita akan menggunakan shorthand property sebagai cara lain, yaitu flex. Jika diperhatikan pada elemen gambar, kita sama sekali tidak menerapkan align-items atau justify-content agar gambar berada di tengah-tengah kontainer. Mengapa hal tersebut dapat terjadi? Triknya, kita jadikan elemen <div class="content-image"> sebagai flex container. Lalu, kita terapkan properti margin: auto pada elemen <img> sehingga gambar berada di tengah kontainer. Hal ini akan memberikan nilai margin di semua sisi, baik vertikal (block) maupun horizontal (inline). */
+
+main aside {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-end: 0;
+}
+main aside .social-media {
+  height: 100%;
+  display: flex;
+}
+main aside .social-media ul {
+  padding: 1.5rem 1rem;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  margin: auto;
+  background-color: #2d3e50;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+main aside .social-media li {
+  list-style-type: none;
+}
+/* }Jika dilihat pada kode di atas, kita menemukan properti inset. Properti tersebut memiliki fungsi yang sama dengan properti top, right, bottom, dan left saat elemen berada di luar normal flow. Dengan kata lain, properti inset adalah sebuah shorthand property untuk keempat properti tersebut. Sementara itu, untuk nama tambahan prefiks, seperti inset-block dan inset-inline, itu artinya inset-block akan memberi nilai pada posisi vertikal (top dan bottom), sedangkan inset-inline akan memberi nilai pada posisi horizontal (left dan right). */
+
+main aside .social-media li a {
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: white;
+  transition: all 0.1s ease-in-out;
+}
+main aside .social-media li a:hover {
+  color: #89b0d9;
+}
+
+@media screen and (max-width: 768px) {
+  header.navbar-container {
+    flex-direction: column;
+  }
+}
+/* }Hal pertama yang perlu kita sesuaikan adalah navbar container. Tampilan dari navbar pada ukuran desktop atau laptop sudah baik, tetapi bila kita lihat pada ukuran kecil, overflow akan terjadi atau teks dari tautan navigasi menjadi turun. Oleh karena itu, kita perlu mengubah value dari properti flex-direction menjadi column. Tambahkan properti tersebut pada navbar container sebagai berikut. */
+
+header.navbar-container .nav-list ul {
+  flex-wrap: wrap;
+  column-gap: 0.5rem;
+}
+main .content {
+  flex-direction: column;
+  gap: 2rem;
+}
+
+main {
+  padding: 1rem 3rem;
+}
+
+main .content {
+  flex-direction: column;
+  gap: 2rem;
+}
+
+main .content .content-description .title {
+  font-size: 3rem;
+}
+main .content .content-description p {
+  font-size: 1rem;
+}
+main .content .content-image {
+  order: -1;
+}
+/* } Perubahan di atas membawa kita untuk menerapkan properti order pada elemen div.content-image. Tujuan dari properti ini adalah mengatur urutan konten dari susunan flex items. Secara default, value-nya adalah 0. Namun, jika kita berikan -1, flex item yang bersangkutan akan bertempat pada urutan awal ( menfubah letak logo content) */
